@@ -71,3 +71,18 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 ## Expected results
 * The field should not accept non-numeric input.
 * The field should remain empty or remove the invalid characters.
+
+#Module5 Ticket 501 Skip Timeout Button after Card Scan
+## Test steps
+1. Build and run the CheckIn/Out system.
+2. Scan a card to trigger the timeout.
+3. Ensure that the "Skip Timeout" button is initially disabled.
+4. After scanning the card, verify that the "Skip Timeout" button becomes enabled.
+5. Wait for a few seconds, but do not wait for the full timeout.
+6. Click the "Skip Timeout" button.
+7. Confirm that the timeout is skipped, and the system proceeds to the next check-in or check-out action.
+
+## Expected results
+* The "Skip Timeout" button should be enabled after scanning the card.
+* Clicking the "Skip Timeout" button should immediately skip the timeout and proceed with the next action.
+* If the "Skip Timeout" button is not clicked, the timeout should occur as normal.

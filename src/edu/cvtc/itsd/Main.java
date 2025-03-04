@@ -83,6 +83,14 @@ public class Main {
     }
   }
 
+  // New class to handle the "Skip Timeout" button press
+  public static class SkipTimeout implements ActionListener {
+    public void actionPerformed(ActionEvent evt) {
+      cancelTimeout();  // Cancel any ongoing timeout
+      doneProcessing();  // Proceed to the next screen or state
+    }
+  }
+
   // Called when closing the application //////////////////////////////////////
   public static class OnShutdown implements Runnable {
     public void run() {
@@ -199,6 +207,14 @@ public class Main {
     }
   }
 
+  // Cancel the timeout task
+  private static void cancelTimeout() {
+    if (timeout != null) {
+      timeout.cancel();
+      timeout = null;
+    }
+  }
+
   // Return to the main panel /////////////////////////////////////////////////
   private static void doneProcessing() {
     timeout.cancel();
@@ -288,6 +304,12 @@ public class Main {
     labelState.setAlignmentX(JComponent.CENTER_ALIGNMENT);
     labelState.setForeground(Color.magenta);
     panelStatus.add(labelState);
+
+    JButton skipTimeoutButton = new JButton("Skip Timeout");
+    skipTimeoutButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+    skipTimeoutButton.addActionListener(new SkipTimeout());
+    skipTimeoutButton.setForeground(Color.green);
+    panelStatus.add(skipTimeoutButton);
 
     panelStatus.add(Box.createVerticalGlue());
 
